@@ -6,6 +6,7 @@
 - jusのロゴは入手しておくこと
 
 ```
+gem install bundle
 bundle install
 cp (どこか) JUS.png
 ```
