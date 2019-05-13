@@ -5,16 +5,16 @@ require "prawn/measurement_extensions"
 # クレジットカードサイズ
 CARD_SIZE = [85.60.send(:mm), 53.98.send(:mm)]
 
-def generate_membership_card(color, member_no, expired_date, name_ja, name_en, password)
-  Prawn::Document.generate("#{member_no}.pdf", :page_size => CARD_SIZE, :margin => 0) do
+def generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en, password)
+  Prawn::Document.generate(filepath, :page_size => CARD_SIZE, :margin => 0) do
     fill_color color
     stroke do
       fill { rectangle [0, CARD_SIZE[1]], CARD_SIZE[0], 16.send(:mm)}
     end
     # 以下グラデーションっぽいのを試したがうまく行かなかった
-    # base_height = 0.8.to_f
+    # base_height = 1.to_f
     # _line_height = base_height
-    # _padding = (0.8/22.0)
+    # _padding = (1/22.0)
     # base_y = (53.98 - 16.5).to_f
     # _y = base_y
     # (0..22).each do |i|
@@ -157,4 +157,19 @@ def generate_membership_card(color, member_no, expired_date, name_ja, name_en, p
     end
 
   end
+end
+
+if __FILE__ == $0
+  if ARGV.length < 7
+    puts "usage: #{$0} filepath color member_no expired_date name_ja name_en password"
+    exit 1
+  end
+  filepath = ARGV[0]
+  color = ARGV[1]
+  member_no = ARGV[2]
+  expired_date = ARGV[3]
+  name_ja = ARGV[4]
+  name_en = ARGV[5]
+  password = ARGV[6]
+  generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en, password)
 end
