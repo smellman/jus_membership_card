@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 # coding: utf-8
 require "prawn"
 require "prawn/measurement_extensions"
@@ -27,7 +28,7 @@ def generate_membership_card(filepath, color, member_no, expired_date, name_ja, 
     # end
     fill_color "000000"
     # ロゴを書く
-    image "./JUS.png",
+    image File.expand_path('../JUS.png', __FILE__),
       :width => 16.send(:mm),
       :height => 13.send(:mm),
       :at => [3.send(:mm), CARD_SIZE[1] - 2.send(:mm)]
@@ -35,13 +36,13 @@ def generate_membership_card(filepath, color, member_no, expired_date, name_ja, 
     # 必要なフォントを取り込む
     font_families.update(
       "IPAex mincho" => {
-        :normal => "./ipaexm.ttf"
+        :normal => File.expand_path("../ipaexm.ttf", __FILE__)
       },
       "Mplus 2c medium" => {
-        :normal => "./mplus-2c-medium.ttf"
+        :normal => File.expand_path("../mplus-2c-medium.ttf", __FILE__)
       },
       "Mplus 2c heavy" => {
-        :normal => "./mplus-2c-heavy.ttf"
+        :normal => File.expand_path("../mplus-2c-heavy.ttf", __FILE__)
       },
     )
 
