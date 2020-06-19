@@ -6,7 +6,7 @@ require "prawn/measurement_extensions"
 # クレジットカードサイズ
 CARD_SIZE = [85.60.send(:mm), 53.98.send(:mm)]
 
-def generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en, password)
+def generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en)
   Prawn::Document.generate(filepath, :page_size => CARD_SIZE, :margin => 0) do
     fill_color color
     stroke do
@@ -148,21 +148,14 @@ def generate_membership_card(filepath, color, member_no, expired_date, name_ja, 
                :overflow => :shrink_to_fit,
                :align => :left,
                :leading => 2
-      # パスワード
-      text_box "パスワード:    #{password}",
-               :at => [25.send(:mm), CARD_SIZE[1] - 43.send(:mm)],
-               :width => 45.send(:mm),
-               :height => 5.send(:mm),
-               :overflow => :shrink_to_fit,
-               :align => :left
     end
 
   end
 end
 
 if __FILE__ == $0
-  if ARGV.length < 7
-    puts "usage: #{$0} filepath color member_no expired_date name_ja name_en password"
+  if ARGV.length < 6
+    puts "usage: #{$0} filepath color member_no expired_date name_ja name_en"
     exit 1
   end
   filepath = ARGV[0]
@@ -171,6 +164,5 @@ if __FILE__ == $0
   expired_date = ARGV[3]
   name_ja = ARGV[4]
   name_en = ARGV[5]
-  password = ARGV[6]
-  generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en, password)
+  generate_membership_card(filepath, color, member_no, expired_date, name_ja, name_en)
 end

@@ -18,5 +18,11 @@ cp (どこか) JUS.png
 ```ruby
 require './membership_card.rb'
 
-generate_membership_card("008080", "DUMMY", "2018-05-31", "松澤 太郎(組長)", "Taro Matsuzawa", "hogehoge")
+generate_membership_card("008080", "DUMMY", "2018-05-31", "松澤 太郎(組長)", "Taro Matsuzawa")
+```
+
+## docker
+
+```sh
+docker run --rm -v $(pwd):/output -it smellman/jus-membership-card /output/12009R.pdf 008080 12001R 2021/05/31 "松澤太郎" "Taro Matsuzawa"
 ```
