@@ -2,23 +2,24 @@
 
 ## setup
 
-- rubyをインストールしておくこと
-- jusのロゴは入手しておくこと
+- ruby 2.7.3をインストールしておくこと
 
-```
-gem install bundle
+```sh
 bundle install
-cp (どこか) JUS.png
 ```
 
 ## 使い方
 
 プログラムを書くか、直接irbなどで叩く
 
-```ruby
-require './membership_card.rb'
+```sh
+ruby membership_card.rb hogehoge.pdf 008080 12001R 2021/05/31 "松澤太郎" "Taro Matsuzawa"
+```
 
-generate_membership_card("008080", "DUMMY", "2018-05-31", "松澤 太郎(組長)", "Taro Matsuzawa")
+## docker build
+
+```sh
+docker build . -t smellman/jus-membership-card
 ```
 
 ## docker
